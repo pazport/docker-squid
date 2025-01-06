@@ -1,14 +1,18 @@
-FROM ubuntu:bionic-20190612
+FROM ubuntu:jammy
 LABEL maintainer="sameer@damagehead.com"
 
-ENV SQUID_VERSION=3.5.27 \
-    SQUID_CACHE_DIR=/var/spool/squid \
+ENV SQUID_CACHE_DIR=/var/spool/squid \
     SQUID_LOG_DIR=/var/log/squid \
     SQUID_USER=proxy
 
-RUN apt-get update \
- && DEBIAN_FRONTEND=noninteractive apt-get install -y squid=${SQUID_VERSION}* \
- && rm -rf /var/lib/apt/lists/*
+    RUN echo "deb http://archive.ubuntu.com/ubuntu focal main universe" > /etc/apt/sources.list.d/focal.list \
+    && echo "deb http://archive.ubuntu.com/ubuntu focal-updates main universe" >> /etc/apt/sources.list.d/focal.list \
+    && echo "deb http://security.ubuntu.com/ubuntu focal-security main universe" >> /etc/apt/sources.list.d/focal.list \
+    && apt-get update \
+    && DEBIAN_FRONTEND=noninteractive apt-get install -y squid \
+    && rm -rf /var/lib/apt/lists/* \
+    && rm /etc/apt/sources.list.d/focal.list
+
 
 COPY entrypoint.sh /sbin/entrypoint.sh
 RUN chmod 755 /sbin/entrypoint.sh
