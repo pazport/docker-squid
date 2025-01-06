@@ -52,13 +52,13 @@ Automated builds of the image are available on [Dockerhub](https://hub.docker.co
 > **Note**: Builds are also available on [Quay.io](https://quay.io/repository/sameersbn/squid)
 
 ```bash
-docker pull sameersbn/squid:3.5.27-2
+docker pull  man1234/dockersquid:latest
 ```
 
 Alternatively you can build the image yourself.
 
 ```bash
-docker build -t sameersbn/squid github.com/sameersbn/docker-squid
+docker build -t sman1234/dockersquid github.com/pazport/docker-squid/
 ```
 
 ## Quickstart
@@ -69,7 +69,7 @@ Start Squid using:
 docker run --name squid -d --restart=always \
   --publish 3128:3128 \
   --volume /srv/docker/squid/cache:/var/spool/squid \
-  sameersbn/squid:3.5.27-2
+  man1234/dockersquid:latest
 ```
 
 *Alternatively, you can use the sample [docker-compose.yml](docker-compose.yml) file to start the container using [Docker Compose](https://docs.docker.com/compose/)*
@@ -82,7 +82,7 @@ You can customize the launch command of the Squid server by specifying arguments
 docker run --name squid -it --rm \
   --publish 3128:3128 \
   --volume /srv/docker/squid/cache:/var/spool/squid \
-  sameersbn/squid:3.5.27-2 -h
+  man1234/dockersquid:latest -h
 ```
 
 ## Persistence
@@ -107,7 +107,7 @@ docker run --name squid -d --restart=always \
   --publish 3128:3128 \
   --volume /path/to/squid.conf:/etc/squid/squid.conf \
   --volume /srv/docker/squid/cache:/var/spool/squid \
-  sameersbn/squid:3.5.27-2
+  man1234/dockersquid:latest
 ```
 
 To reload the Squid configuration on a running instance you can send the `HUP` signal to the container.
@@ -155,7 +155,7 @@ To upgrade to newer releases:
   1. Download the updated Docker image:
 
   ```bash
-  docker pull sameersbn/squid:3.5.27-2
+  docker pull man1234/dockersquid:latest
   ```
 
   2. Stop the currently running image:
