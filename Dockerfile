@@ -14,8 +14,8 @@ ENV SQUID_CACHE_DIR=/var/spool/squid \
     && rm /etc/apt/sources.list.d/focal.list
 
 
-COPY entrypoint.sh /sbin/entrypoint.sh
-RUN chmod 755 /sbin/entrypoint.sh
+COPY entrypoint.sh /etc/entrypoint.sh
+RUN chmod 755 /etc/entrypoint.sh
 
 EXPOSE 3128/tcp
-ENTRYPOINT ["/sbin/entrypoint.sh"]
+ENTRYPOINT ["/etc/entrypoint.sh"]
